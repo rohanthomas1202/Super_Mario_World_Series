@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("test version controll intellij");
+        System.out.println("test version control intellij");
     }
 }
