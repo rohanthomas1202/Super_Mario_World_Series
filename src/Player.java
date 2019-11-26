@@ -179,6 +179,14 @@ public class Player implements Comparable<Player> {
         return (name + "\t" + calculate_atBat() + "\t" + gethits() + "\t" + getwalks() + "\t" + getstrikeouts() + "\t" + getHBP() + "\t" + getsacrifice() + "\t" + formatter.format(calculate_BA()) + "\t" + formatter.format(calculate_OB()) + "\n");
         //return null;
     }
+    // function to round  all decimal values given to it to the given number of places
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 
     @Override
     public int compareTo(Player player) {
