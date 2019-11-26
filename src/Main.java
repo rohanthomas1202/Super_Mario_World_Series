@@ -40,12 +40,11 @@ public class Main {
         System.out.println(key_hash.size());
 
         // read from input File
-        // user entered fil
-        Scanner scan = new Scanner(System.in);
+        // user entered file
+        /*Scanner scan = new Scanner(System.in);
         String userFile = scan.nextLine();
-
-        File inputFile = new File(userFile);
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        File inputFile = new File(new Scanner(System.in).nextLine());*/
+        BufferedReader reader = new BufferedReader(new FileReader(new File(new Scanner(System.in).nextLine())));
 
 
         // line will hold the entire line
