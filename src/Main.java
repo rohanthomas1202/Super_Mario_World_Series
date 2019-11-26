@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static <Char> void main(String[] args) throws IOException {
 
         // hashMap to store the keys
         HashMap<String, String> key_hash = new HashMap<>();
@@ -38,9 +38,25 @@ public class Main {
 
         System.out.println(key_hash.size());
 
+        // read from input File
+        // user entered file
+        File inputFile = new File(String.valueOf(System.in));
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
-////////////
 
+        // line will hold the entire line
+        String line = null;
+        // h_a holds information on whether the player is from home team or away team
+        Character h_a = null;
+        // name of player
+        String name = null;
+        // key_code holds the code to search in hashMap
+        String key_code = null;
+
+
+        while ((line = reader.readLine()) != null) {
+
+        }
 
     }
 
