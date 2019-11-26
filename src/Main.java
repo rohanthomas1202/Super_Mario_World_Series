@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-    public static <Char> void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         // hashMap to store the keys
         HashMap<String, String> key_hash = new HashMap<>();
