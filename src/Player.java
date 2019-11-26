@@ -22,6 +22,7 @@ public class Player implements Comparable<Player> {
     private int hit_by_pitch;   // P;
     private int out;            // O;
     private int sacrifice;      // S;
+    private char home_away;
 
     // default constructor
     Player() {
