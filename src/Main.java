@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
     public static <Char> void main(String[] args) throws IOException {
@@ -39,8 +40,11 @@ public class Main {
         System.out.println(key_hash.size());
 
         // read from input File
-        // user entered file
-        File inputFile = new File(String.valueOf(System.in));
+        // user entered fil
+        Scanner scan = new Scanner(System.in);
+        String userFile = scan.nextLine();
+
+        File inputFile = new File(userFile);
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
 
 
@@ -55,7 +59,13 @@ public class Main {
 
 
         while ((line = reader.readLine()) != null) {
+            h_a = line.charAt(0);
+            line = line.substring(2);
+            name = line.substring(0, line.indexOf(" "));
+            line = line.substring(line.indexOf(" "));
+            key_code = line;
 
+            System.out.println("h_a: " + h_a + ", name = " + name + ", key_code: " + key_code);
         }
 
     }
