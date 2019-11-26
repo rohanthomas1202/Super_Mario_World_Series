@@ -7,27 +7,28 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) throws IOException {
 
+        // hashMap to store the keys
         HashMap<String, String> key_hash = new HashMap<>();
 
+        // read from "keyfile.txt"
         File file = new File("keyfile.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-        String st = null;
+        String str = null;
         String key = null;
         // reading the keys and storing them in hash map for easy retrial later
-        while ((st = br.readLine()) != null) {
+        while ((str = br.readLine()) != null) {
             // the String enclosed in ## ... ## contains the key
-            if (st.contains("##")) {
-                st = st.substring(3);
-                key = st.substring(0, st.indexOf(" ##"));
+            if (str.contains("##")) {
+                str = str.substring(3);
+                key = str.substring(0, str.indexOf(" ##"));
                 // test
                 System.out.println("key: " + key);
-            } else if (!st.equals("")) {
-                System.out.println("add:\t" + st + "," + key);
-                key_hash.put(st, key);
+            } else if (!str.equals("")) {
+                System.out.println("add:\t" + str + "," + key);
+                key_hash.put(str, key);
             }
-
         }
         // close file after use
         br.close();
@@ -36,6 +37,11 @@ public class Main {
         System.out.println();
 
         System.out.println(key_hash.size());
+
+
+
+
+
     }
 
 }
