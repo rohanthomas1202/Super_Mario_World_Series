@@ -34,6 +34,7 @@ public class Main {
 
         // test
         System.out.println();
+
         System.out.println(key_hash.size());
     }
 
