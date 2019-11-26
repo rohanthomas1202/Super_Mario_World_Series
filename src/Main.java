@@ -15,21 +15,24 @@ public class Main {
 
         String st = null;
         String key = null;
+        // reading the keys and storing them in hash map for easy retrial later
         while ((st = br.readLine()) != null) {
+            // the String enclosed in ## ... ## contains the key
             if (st.contains("##")) {
                 st = st.substring(3);
                 key = st.substring(0, st.indexOf(" ##"));
+                // test
                 System.out.println("key: " + key);
-            } else if (st.equals("")) {
-                System.out.println();
-            } else {
+            } else if (!st.equals("")) {
                 System.out.println("add:\t" + st + "," + key);
                 key_hash.put(st, key);
             }
 
         }
+        // close file after use
         br.close();
 
+        // test
         System.out.println();
         System.out.println(key_hash.size());
     }
