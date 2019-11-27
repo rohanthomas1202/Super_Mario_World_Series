@@ -22,6 +22,7 @@ public class Player implements Comparable<Player> {
     private int hit_by_pitch;   // P;
     private int out;            // O;
     private int sacrifice;      // S;
+    private int errors;         // E;
     private char home_away;
 
     // default constructor
@@ -33,6 +34,7 @@ public class Player implements Comparable<Player> {
         hit_by_pitch = 0;
         out = 0;
         sacrifice = 0;
+        errors = 0;
     }
 
     //NAME
@@ -66,7 +68,19 @@ public class Player implements Comparable<Player> {
     int gethits() {
         return hits;
     }
+    ////////////////////////
 
+    //ERRORS
+    ////////////////////////
+    void setErrors(int h) {
+        errors = h;
+    }
+    void errors_plus(int h) {
+        errors = (errors + h);
+    }
+    int getErrors() {
+        return errors;
+    }
     ////////////////////////
 
 
@@ -76,11 +90,9 @@ public class Player implements Comparable<Player> {
     void setwalks(int w) {
         walks = w;
     }
-
     void walks_plus(int w) {
         walks = (walks + w);
     }
-
     int getwalks() {
         return walks;
     }
@@ -91,11 +103,9 @@ public class Player implements Comparable<Player> {
     void setstrikeouts(int s) {
         strikeouts = s;
     }
-
     void strikeouts_plus(int s) {
         strikeouts = (strikeouts + s);
     }
-
     int getstrikeouts() {
         return strikeouts;
     }
@@ -107,15 +117,10 @@ public class Player implements Comparable<Player> {
     void setHBP(int hbp) {
         hit_by_pitch = hbp;
     }
-
     void HBP_plus(int h) {
-
         hit_by_pitch = (hit_by_pitch + h);
     }
-
     int getHBP() {
-
-
         return hit_by_pitch;
     }
     ////////////////////////
@@ -126,11 +131,9 @@ public class Player implements Comparable<Player> {
     void setout(int o) {
         out = o;
     }
-
     void out_plus(int o) {
         out = (out + o);
     }
-
     public int getout() {
         return out;
     }
@@ -141,11 +144,9 @@ public class Player implements Comparable<Player> {
     void setsacrifice(int s) {
         sacrifice = s;
     }
-
     void sacrifice_plus(int s) {
         sacrifice = (sacrifice + s);
     }
-
     private int getsacrifice() {
         return sacrifice;
     }
