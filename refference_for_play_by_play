@@ -1,23 +1,21 @@
 A
-Iggy        out, out
-Lemmy       out, WALK
-Roy         out, HITS
-Bowser      STRIKEOUT, out
+Iggy        OUTS, OUTS
+Lemmy       OUTS, WALK
+Roy         OUTS, HITS
+Bowser      STRIKEOUT, OUTS
 Morton      STRIKEOUT
 Bowser_Jr   WALK
 Larry       HITS
-Wendy       out
-Ludwig      out
+Wendy       OUTS
+Ludwig      OUTS
 
 H
-Toad 5-3
-Peach E7
-Mario BB
-Donkey_Kong 1B
-Luigi DP
-Toadette K
-Daisy 1-3
-Diddy_Kong F9
-Yoshi P6
-Toad 4-3
-Peach K
+Toad        OUTS, OUTS
+Peach       ERRORS, STRIKEOUT
+Mario       WALK
+Donkey_Kong HITS
+Luigi       OUTS
+Toadette    STRIKEOUT
+Daisy       OUTS
+Diddy_Kong  OUTS
+Yoshi       OUTS
