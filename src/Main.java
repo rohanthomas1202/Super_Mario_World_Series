@@ -68,7 +68,6 @@ public class Main {
 
             System.out.println("h_a: " + h_a + ", name = " + name + ", key_code: " + key_code);
 
-
             // check to see if the player is home or away
             // if home player, update home hashMap
             if (h_a == 'H') {
