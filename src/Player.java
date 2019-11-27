@@ -40,9 +40,18 @@ public class Player implements Comparable<Player> {
     void setName(String n) {
         name = n;
     }
-
     String getName() {
         return name;
+    }
+    ////////////////////////
+
+    //home_away
+    ////////////////////////
+    void setHome_away(char a){
+        home_away = a;
+    }
+    Character getHome_away(){
+        return home_away;
     }
     ////////////////////////
 
@@ -51,15 +60,16 @@ public class Player implements Comparable<Player> {
     void sethits(int h) {
         hits = h;
     }
-
     void hits_plus(int h) {
         hits = (hits + h);
     }
-
     int gethits() {
         return hits;
     }
+
     ////////////////////////
+
+
 
     //WALKS
     ////////////////////////

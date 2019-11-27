@@ -10,6 +10,8 @@ public class Main {
 
         // hashMap to store the keys
         HashMap<String, String> key_hash = new HashMap<>();
+        HashMap<String, Player> home_hash = new HashMap<>();
+        HashMap<String, Player> away_hash = new HashMap<>();
 
         // read from "keyfile.txt"
         File file = new File("keyfile.txt");
@@ -65,6 +67,41 @@ public class Main {
             key_code = line;
 
             System.out.println("h_a: " + h_a + ", name = " + name + ", key_code: " + key_code);
+
+
+            // check to see if the player is home or away
+            // if home player, update home hashMap
+            if (h_a == 'H'){
+                // check if player is already in the home hashMap
+                // if yes, update his stats
+                if (home_hash.containsKey(name)){
+
+                }
+                // else create a new player
+                else{
+                    Player player = new Player();
+                    player.setName(name);
+
+                    home_hash.put(name, player);
+
+                }
+            }
+            // else if away player, update away hashMap
+            else if (h_a == 'A'){
+                // check if player is already in the away hashMap
+                // if yes, update his stats
+                if (){
+
+                }
+                // else create a new player
+                else{
+
+                }
+            }else{
+                System.out.println("Wrong Home/Away code");
+                System.out.println("check code");
+            }
+
         }
 
     }
