@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -19,10 +16,14 @@ public class Main {
 
 
 
-        // read from "keyfile.txt"
-        File file = new File("keyfile.txt");
+        BufferedWriter writer = new BufferedWriter(new FileWriter("leaders.txt"));
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
+
+
+        // read from "keyfile.txt"
+        File inputfile = new File("keyfile.txt");
+
+        BufferedReader br = new BufferedReader(new FileReader(inputfile));
 
         String str = null;
         String key = null;
@@ -44,7 +45,7 @@ public class Main {
 
         /*test
         System.out.println();*/
-        System.out.println("Finished reading all key values from keyfile.txt");
+        //System.out.println("Finished reading all key values from keyfile.txt");
 
         // read from input File
         // user entered file
@@ -52,7 +53,7 @@ public class Main {
         String userFile = scan.nextLine();
         File inputFile = new File(new Scanner(System.in).nextLine());*/
 
-        System.out.println("Enter file name:");
+        //System.out.println("Enter file name:");
         BufferedReader reader = new BufferedReader(new FileReader(new File(new Scanner(System.in).nextLine())));
 
 
@@ -133,28 +134,38 @@ public class Main {
             }
 
 
-
         }
 
 
+        home_names.sort(Comparator.comparing(String::toString));
+        away_names.sort(Comparator.comparing(String::toString));
 
-        home_names.sort( Comparator.comparing( String::toString ) );
-        away_names.sort(Comparator.comparing( String::toString ));
 
+        //System.out.println("AWAY");
+        writer.write("AWAY\n");
 
-        System.out.println("AWAY");
         for (String away_name : away_names) {
-            System.out.println(away_hash.get(away_name));
+            //System.out.print(away_hash.get(away_name));
+            writer.write(String.valueOf(away_hash.get(away_name)));
+
         }
 
-        System.out.println();
 
-        System.out.println("HOME");
+        //System.out.println();
+        writer.write("\n");
+
+        //System.out.println("HOME");
+        writer.write("HOME\n");
+
         for (String home_name : home_names) {
-            System.out.println(home_hash.get(home_name));
+            //System.out.print(home_hash.get(home_name));
+            writer.write(String.valueOf(home_hash.get(home_name)));
+
         }
 
-
+        //System.out.println("LEAGUE LEADERS\nBATTING AVERAGE");
+        writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE");
+        writer.close();
 
 
     }
