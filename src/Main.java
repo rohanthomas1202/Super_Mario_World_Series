@@ -41,16 +41,8 @@ public class Main {
         // close file after use
         br.close();
 
-        /*test
-        System.out.println();*/
-        //System.out.println("Finished reading all key values from keyfile.txt");
 
-        // read from input File
-        // user entered file
-        /*Scanner scan = new Scanner(System.in);
-        String userFile = scan.nextLine();
-        File inputFile = new File(new Scanner(System.in).nextLine());*/
-
+        // get filename from user
         //System.out.println("Enter file name:");
         BufferedReader reader = new BufferedReader(new FileReader(new File(new Scanner(System.in).nextLine())));
 
@@ -72,13 +64,11 @@ public class Main {
             line = line.substring(line.indexOf(" "));
             key_code = line.substring(1);
 
-            //System.out.println("h_a: " + h_a + ", name = " + name + ", key_code: " + key_code);
 
             // check to see if the player is home or away
             // if home player, update home hashMap
             if (h_a == 'H') {
-                // check if player is already in the home hashMap
-                // if yes, update his stats
+
                 populate_hash(key_hash, home_hash, home_names, h_a, name, key_code);
             }
             // else if away player, update away hashMap
@@ -129,10 +119,10 @@ public class Main {
 
     }
 
-    private static void populate_hash(HashMap<String, String> key_hash, HashMap<String, Player> away_hash, ArrayList<String> away_names, Character h_a, String name, String key_code) {
-        if (away_hash.containsKey(name)) {
+    private static void populate_hash(HashMap<String, String> key_hash, HashMap<String, Player> hash, ArrayList<String> names, Character h_a, String name, String key_code) {
+        if (hash.containsKey(name)) {
             String this_key = key_hash.get(key_code);
-            update_stat(this_key, away_hash.get(name));
+            update_stat(this_key, hash.get(name));
 
         }
         // else create a new player
@@ -148,8 +138,8 @@ public class Main {
             // function to decide which state to increment
             update_stat(this_key, player);
             // add player to the hashMap
-            away_hash.put(name, player);
-            away_names.add(name);
+            hash.put(name, player);
+            names.add(name);
         }
     }
 
