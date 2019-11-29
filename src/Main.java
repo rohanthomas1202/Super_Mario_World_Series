@@ -19,9 +19,9 @@ public class Main {
 
 
         // read from "keyfile.txt"
-        File inputfile = new File("keyfile.txt");
+        File infile = new File("keyfile.txt");
 
-        BufferedReader br = new BufferedReader(new FileReader(inputfile));
+        BufferedReader br = new BufferedReader(new FileReader(infile));
 
         String str = null;
         String key = null;
@@ -123,7 +123,6 @@ public class Main {
         if (hash.containsKey(name)) {
             String this_key = key_hash.get(key_code);
             update_stat(this_key, hash.get(name));
-
         }
         // else create a new player
         else {
