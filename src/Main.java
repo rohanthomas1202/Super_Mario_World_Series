@@ -17,7 +17,6 @@ public class Main {
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("leaders.txt"));
 
-
         // read from "keyfile.txt"
         File infile = new File("keyfile.txt");
 
@@ -41,11 +40,9 @@ public class Main {
         // close file after use
         br.close();
 
-
         // get filename from user
         //System.out.println("Enter file name:");
         BufferedReader reader = new BufferedReader(new FileReader(new File(new Scanner(System.in).nextLine())));
-
 
         // line will hold the entire line
         String line = null;
@@ -56,7 +53,6 @@ public class Main {
         // key_code holds the code to search in hashMap
         String key_code = null;
 
-
         while ((line = reader.readLine()) != null) {
             h_a = line.charAt(0);
             line = line.substring(2);
@@ -64,17 +60,13 @@ public class Main {
             line = line.substring(line.indexOf(" "));
             key_code = line.substring(1);
 
-
             // check to see if the player is home or away
             // if home player, update home hashMap
             if (h_a == 'H') {
-
                 populate_hash(key_hash, home_hash, home_names, h_a, name, key_code);
             }
             // else if away player, update away hashMap
             else if (h_a == 'A') {
-                // check if player is already in the away hashMap
-                // if yes, update his stats
                 populate_hash(key_hash, away_hash, away_names, h_a, name, key_code);
             } else {
                 // should newer happen for our project
@@ -82,13 +74,10 @@ public class Main {
                 System.out.println("check code");
             }
 
-
         }
-
 
         home_names.sort(Comparator.comparing(String::toString));
         away_names.sort(Comparator.comparing(String::toString));
-
 
         //System.out.println("AWAY");
         writer.write("AWAY\n");
@@ -96,9 +85,7 @@ public class Main {
         for (String away_name : away_names) {
             //System.out.print(away_hash.get(away_name));
             writer.write(String.valueOf(away_hash.get(away_name)));
-
         }
-
 
         //System.out.println();
         writer.write("\n");
@@ -109,17 +96,17 @@ public class Main {
         for (String home_name : home_names) {
             //System.out.print(home_hash.get(home_name));
             writer.write(String.valueOf(home_hash.get(home_name)));
-
         }
 
         //System.out.println("LEAGUE LEADERS\nBATTING AVERAGE");
         writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE");
         writer.close();
-
-
     }
 
+    // function which takes any Player and checks if the player is in the home/away hashMap, if not present adds a new player
     private static void populate_hash(HashMap<String, String> key_hash, HashMap<String, Player> hash, ArrayList<String> names, Character h_a, String name, String key_code) {
+        // check if player is already in the hashMap
+        // if yes, update his stats
         if (hash.containsKey(name)) {
             String this_key = key_hash.get(key_code);
             update_stat(this_key, hash.get(name));
@@ -142,7 +129,7 @@ public class Main {
         }
     }
 
-
+    // functions which updates a player's stats
     private static void update_stat(String s, Player p) {
 
         switch (s) {
@@ -172,4 +159,3 @@ public class Main {
         }
     }
 }
-
