@@ -1,5 +1,5 @@
 # Super_Mario_World_Series
-HW 4 using Hash Tables
+Calculate baseball leaders from away and home teams using Hash Tables
 
 **Objective:Utilize common features of a hash table in the design of an object-oriented program**
 
