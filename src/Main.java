@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -12,11 +11,19 @@ public class Main {
         HashMap<String, String> key_hash = new HashMap<>();
         HashMap<String, Player> home_hash = new HashMap<>();
         HashMap<String, Player> away_hash = new HashMap<>();
+        ArrayList<String> home_names = new ArrayList<>();
+        ArrayList<String> away_names = new ArrayList<>();
+
+
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("leaders.txt"));
+
+
 
         // read from "keyfile.txt"
-        File file = new File("keyfile.txt");
+        File inputfile = new File("keyfile.txt");
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        BufferedReader br = new BufferedReader(new FileReader(inputfile));
 
         String str = null;
         String key = null;
@@ -27,25 +34,26 @@ public class Main {
                 str = str.substring(3);
                 key = str.substring(0, str.indexOf(" ##"));
                 // test
-                System.out.println("key: " + key);
+                //System.out.println("key: " + key);
             } else if (!str.equals("")) {
-                System.out.println("add:\t" + str + "," + key);
+                //System.out.println("add:\t" + str + "," + key);
                 key_hash.put(str, key);
             }
         }
         // close file after use
         br.close();
 
-        // test
-        System.out.println();
-
-        System.out.println(key_hash.size());
+        /*test
+        System.out.println();*/
+        //System.out.println("Finished reading all key values from keyfile.txt");
 
         // read from input File
         // user entered file
         /*Scanner scan = new Scanner(System.in);
         String userFile = scan.nextLine();
         File inputFile = new File(new Scanner(System.in).nextLine());*/
+
+        //System.out.println("Enter file name:");
         BufferedReader reader = new BufferedReader(new FileReader(new File(new Scanner(System.in).nextLine())));
 
 
@@ -66,7 +74,7 @@ public class Main {
             line = line.substring(line.indexOf(" "));
             key_code = line.substring(1);
 
-            System.out.println("h_a: " + h_a + ", name = " + name + ", key_code: " + key_code);
+            //System.out.println("h_a: " + h_a + ", name = " + name + ", key_code: " + key_code);
 
             // check to see if the player is home or away
             // if home player, update home hashMap
@@ -75,7 +83,7 @@ public class Main {
                 // if yes, update his stats
                 if (home_hash.containsKey(name)) {
                     String this_key = key_hash.get(key_code);
-                    update_stat(this_key,home_hash.get(name));
+                    update_stat(this_key, home_hash.get(name));
                 }
                 // else create a new player
                 else {
@@ -91,6 +99,7 @@ public class Main {
                     update_stat(this_key, player);
                     // add player to the hashMap
                     home_hash.put(name, player);
+                    home_names.add(name);
                 }
             }
             // else if away player, update away hashMap
@@ -99,7 +108,7 @@ public class Main {
                 // if yes, update his stats
                 if (away_hash.containsKey(name)) {
                     String this_key = key_hash.get(key_code);
-                    update_stat(this_key,away_hash.get(name));
+                    update_stat(this_key, away_hash.get(name));
 
                 }
                 // else create a new player
@@ -116,6 +125,7 @@ public class Main {
                     update_stat(this_key, player);
                     // add player to the hashMap
                     away_hash.put(name, player);
+                    away_names.add(name);
                 }
             } else {
                 // should newer happen for our project
@@ -123,21 +133,45 @@ public class Main {
                 System.out.println("check code");
             }
 
+
         }
 
-        System.out.println("Home:");
-        System.out.println(home_hash);
+
+        home_names.sort(Comparator.comparing(String::toString));
+        away_names.sort(Comparator.comparing(String::toString));
 
 
-        System.out.println("Away");
-        System.out.println(away_hash);
+        //System.out.println("AWAY");
+        writer.write("AWAY\n");
 
+        for (String away_name : away_names) {
+            //System.out.print(away_hash.get(away_name));
+            writer.write(String.valueOf(away_hash.get(away_name)));
+
+        }
+
+
+        //System.out.println();
+        writer.write("\n");
+
+        //System.out.println("HOME");
+        writer.write("HOME\n");
+
+        for (String home_name : home_names) {
+            //System.out.print(home_hash.get(home_name));
+            writer.write(String.valueOf(home_hash.get(home_name)));
+
+        }
+
+        //System.out.println("LEAGUE LEADERS\nBATTING AVERAGE");
+        writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE");
+        writer.close();
 
 
     }
 
 
-    private static void update_stat( String s, Player p) {
+    private static void update_stat(String s, Player p) {
 
         switch (s) {
             case "OUTS":
