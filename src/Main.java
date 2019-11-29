@@ -15,9 +15,7 @@ public class Main {
         ArrayList<String> away_names = new ArrayList<>();
 
 
-
         BufferedWriter writer = new BufferedWriter(new FileWriter("leaders.txt"));
-
 
 
         // read from "keyfile.txt"
@@ -81,52 +79,13 @@ public class Main {
             if (h_a == 'H') {
                 // check if player is already in the home hashMap
                 // if yes, update his stats
-                if (home_hash.containsKey(name)) {
-                    String this_key = key_hash.get(key_code);
-                    update_stat(this_key, home_hash.get(name));
-                }
-                // else create a new player
-                else {
-                    // creating a new player
-                    Player player = new Player();
-                    // player team
-                    player.setHome_away(h_a);
-                    // new player name
-                    player.setName(name);
-                    // get the type of stat to increment
-                    String this_key = key_hash.get(key_code);
-                    // function to decide which state to increment
-                    update_stat(this_key, player);
-                    // add player to the hashMap
-                    home_hash.put(name, player);
-                    home_names.add(name);
-                }
+                populate_hash(key_hash, home_hash, home_names, h_a, name, key_code);
             }
             // else if away player, update away hashMap
             else if (h_a == 'A') {
                 // check if player is already in the away hashMap
                 // if yes, update his stats
-                if (away_hash.containsKey(name)) {
-                    String this_key = key_hash.get(key_code);
-                    update_stat(this_key, away_hash.get(name));
-
-                }
-                // else create a new player
-                else {
-                    // creating a new player
-                    Player player = new Player();
-                    // player team
-                    player.setHome_away(h_a);
-                    // new player name
-                    player.setName(name);
-                    // get the type of stat to increment
-                    String this_key = key_hash.get(key_code);
-                    // function to decide which state to increment
-                    update_stat(this_key, player);
-                    // add player to the hashMap
-                    away_hash.put(name, player);
-                    away_names.add(name);
-                }
+                populate_hash(key_hash, away_hash, away_names, h_a, name, key_code);
             } else {
                 // should newer happen for our project
                 System.out.println("Wrong Home/Away code");
@@ -170,6 +129,30 @@ public class Main {
 
     }
 
+    private static void populate_hash(HashMap<String, String> key_hash, HashMap<String, Player> away_hash, ArrayList<String> away_names, Character h_a, String name, String key_code) {
+        if (away_hash.containsKey(name)) {
+            String this_key = key_hash.get(key_code);
+            update_stat(this_key, away_hash.get(name));
+
+        }
+        // else create a new player
+        else {
+            // creating a new player
+            Player player = new Player();
+            // player team
+            player.setHome_away(h_a);
+            // new player name
+            player.setName(name);
+            // get the type of stat to increment
+            String this_key = key_hash.get(key_code);
+            // function to decide which state to increment
+            update_stat(this_key, player);
+            // add player to the hashMap
+            away_hash.put(name, player);
+            away_names.add(name);
+        }
+    }
+
 
     private static void update_stat(String s, Player p) {
 
@@ -198,10 +181,6 @@ public class Main {
             default:
                 break;
         }
-
-
     }
-    ////////////////////////////////////////////////////////////////////////////////
-
 }
 
