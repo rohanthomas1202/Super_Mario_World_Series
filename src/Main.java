@@ -104,7 +104,6 @@ public class Main {
         for (int code = 0; code < 6; code++) {
 
 
-            ArrayList<Double> list = new ArrayList<>();
             /*
             Using code to determine which leaders to printout
             0 -> BATTING AVERAGE
@@ -117,6 +116,8 @@ public class Main {
 
             //Print league leaders
             if (code == 0) {
+
+                ArrayList<Double> list = new ArrayList<>();
                 System.out.print("\nLEAGUE LEADERS\nBATTING AVERAGE");
                 writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE");
                 for (int i = 0; i < all_names.size(); i++) {
@@ -171,6 +172,7 @@ public class Main {
 
 
             } else if (code == 1) {
+                ArrayList<Double> list = new ArrayList<>();
                 System.out.print("\n\nON-BASE PERCENTAGE");
                 writer.write("\n\nON-BASE PERCENTAGE");
 
@@ -183,7 +185,6 @@ public class Main {
                         list.add(away_hash.get(all_names.get(i)).calculate_OB());
                     }
                 }
-
 
                 Collections.sort(list);
                 ArrayList<Double> top3 = new ArrayList<Double>(list.subList(list.size() - 3, list.size()));
@@ -226,7 +227,71 @@ public class Main {
 
 
             } else if (code == 2) {
+                ArrayList<Integer> list = new ArrayList<>();
+                System.out.print("\n\nHITS\n");
                 writer.write("\n\nHITS\n");
+                for (int i = 0; i < all_names.size(); i++) {
+                    if (home_hash.containsKey(all_names.get(i))) {
+                        //System.out.println(all_names.get(i) + "is in home team");
+                        list.add(home_hash.get(all_names.get(i)).gethits());
+                    } else {
+                        //System.out.println(all_names.get(i) + "is in away team");
+                        list.add(away_hash.get(all_names.get(i)).gethits());
+                    }
+                }
+
+
+                Collections.sort(list);
+                ArrayList<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() - 3, list.size()));
+
+                int counter = 0;
+                for (int three_val = 2; three_val >= 0; three_val--) {
+                    counter = 0;
+                    System.out.println(top3.get(three_val) + "\t");
+                    writer.write(top3.get(three_val) + "\t");
+
+                    for (int away_name_index = 0; away_name_index < away_names.size(); away_name_index++){
+                        if (top3.get(three_val) == away_hash.get(away_names.get(away_name_index)).gethits()) {
+                            if (counter > 0) {
+                                System.out.print(", ");
+                                writer.write(", ");
+                            }
+                            System.out.print(away_names.get(away_name_index));
+                            writer.write(away_names.get(away_name_index));
+                            counter++;
+                        }
+                    }
+
+
+
+                    for (int home_name_index = 0; home_name_index < home_names.size(); home_name_index++){
+                        if (top3.get(three_val) == home_hash.get(home_names.get(home_name_index)).gethits()) {
+                            if (counter > 0) {
+                                System.out.print(", ");
+                                writer.write(", ");
+                            }
+                            System.out.print(home_names.get(home_name_index));
+                            writer.write(home_names.get(home_name_index));
+                            counter++;
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+
+                    if (counter >= 2) {
+                        three_val -= counter;
+                    }
+
+                }
+
 
             } else if (code == 3) {
                 writer.write("\n\nWALKS\n");

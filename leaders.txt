@@ -30,6 +30,9 @@ ON-BASE PERCENTAGE
 HITS
 
 
+HITS
+1	Larry, Roy, Donkey_Kong
+
 WALKS
 
 
