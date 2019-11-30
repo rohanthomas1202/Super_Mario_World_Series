@@ -104,7 +104,7 @@ public class Main {
         for (int code = 0; code < 6; code++) {
 
 
-            ArrayList<Integer> list = new ArrayList<>();
+            ArrayList<Double> list = new ArrayList<>();
             /*
             Using code to determine which leaders to printout
             0 -> BATTING AVERAGE
@@ -117,35 +117,73 @@ public class Main {
 
             //Print league leaders
             if (code == 0) {
-                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
-                for (int i = 0; i < all_names.size(); i++){
-                    if (home_hash.containsKey(all_names.get(i))){
-                        System.out.println(all_names.get(i) + "is in home team");
-
-                    }else{
-                        System.out.println(all_names.get(i) + "is in away team");
-
+                System.out.print("\nLEAGUE LEADERS\nBATTING AVERAGE");
+                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE");
+                for (int i = 0; i < all_names.size(); i++) {
+                    if (home_hash.containsKey(all_names.get(i))) {
+                        //System.out.println(all_names.get(i) + "is in home team");
+                        list.add(home_hash.get(all_names.get(i)).calculate_BA());
+                    } else {
+                        //System.out.println(all_names.get(i) + "is in away team");
+                        list.add(away_hash.get(all_names.get(i)).calculate_BA());
                     }
                 }
 
 
-
                 Collections.sort(list);
-                ArrayList<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() -3, list.size()));
+                ArrayList<Double> top3 = new ArrayList<Double>(list.subList(list.size() - 3, list.size()));
+
+                int counter = 0;
+                for (int three_val = 2; three_val >= 0; three_val--) {
+                    counter = 0;
+                    System.out.println(String.format("\n%.3f", top3.get(three_val)) + "\t");
+                    writer.write(String.format("\n%.3f", top3.get(three_val)) + "\t");
+
+                    for (int name_index = 0; name_index < all_names.size(); name_index++) {
+
+                        if (home_hash.containsKey(all_names.get(name_index))) {
+                            if (top3.get(three_val) == home_hash.get(all_names.get(name_index)).calculate_BA()) {
+                                if (counter > 0) {
+                                    System.out.print(", ");
+                                    writer.write(", ");
+                                }
+                                System.out.print(all_names.get(name_index));
+                                writer.write(all_names.get(name_index));
+                                counter++;
+                            }
+                        } else {
+                            if (top3.get(three_val) == away_hash.get(all_names.get(name_index)).calculate_BA()) {
+                                if (counter > 0) {
+                                    System.out.print(", ");
+                                    writer.write(", ");
+                                }
+                                System.out.print(all_names.get(name_index));
+                                writer.write(all_names.get(name_index));
+                                counter++;
+                            }
+                        }
+                    }
+                    if (counter >= 2) {
+                        three_val--;
+                    }
+
+                }
+
+
             } else if (code == 1) {
-                writer.write("\nON-BASE PERCENTAGE\n");
+                writer.write("\n\nON-BASE PERCENTAGE\n");
 
             } else if (code == 2) {
-                writer.write("\nHITS\n");
+                writer.write("\n\nHITS\n");
 
             } else if (code == 3) {
-                writer.write("\nWALKS\n");
+                writer.write("\n\nWALKS\n");
 
             } else if (code == 4) {
-                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
+                writer.write("\n\nLEAGUE LEADERS\nBATTING AVERAGE\n");
 
             } else if (code == 5) {
-                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
+                writer.write("\n\nLEAGUE LEADERS\nBATTING AVERAGE\n");
 
             }
         }
