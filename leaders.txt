@@ -1,40 +1,32 @@
 AWAY
-Bowser	2	0	0	1	0	0	0.000	0.000
-Bowser_Jr	0	0	1	0	0	0	0.000	1.000
-Iggy	2	0	0	0	0	0	0.000	0.000
-Larry	1	1	0	0	0	0	1.000	1.000
-Lemmy	1	0	1	0	0	0	0.000	0.500
-Ludwig	1	0	0	0	0	0	0.000	0.000
-Morton	1	0	0	1	0	0	0.000	0.000
 Roy	2	1	0	0	0	0	0.500	0.500
-Wendy	1	0	0	0	0	0	0.000	0.000
 
 HOME
-Daisy	1	0	0	0	0	0	0.000	0.000
-Diddy_Kong	1	0	0	0	0	0	0.000	0.000
-Donkey_Kong	1	1	0	0	0	0	1.000	1.000
-Luigi	1	0	0	0	0	0	0.000	0.000
-Mario	0	0	1	0	0	0	0.000	1.000
-Peach	1	0	0	1	0	0	0.000	0.000
-Toad	2	0	0	0	0	0	0.000	0.000
-Toadette	1	0	0	1	0	0	0.000	0.000
-Yoshi	1	0	0	0	0	0	0.000	0.000
-
+Rohan	3	2	0	0	0	0	0.667	0.667
+Ruben	5	1	0	0	0	0	0.200	0.200
+T	3	2	0	0	0	0	0.667	0.667
+Tom	2	0	0	0	0	0	0.000	0.000
 LEAGUE LEADERS
 BATTING AVERAGE
-1.000	Larry, Donkey_Kong
+0.667	Rohan, T
 0.500	Roy
 
+
 ON-BASE PERCENTAGE
-1.000	Bowser_Jr, Larry, Donkey_Kong, Mario
+0.667	Rohan, T
+0.500	Roy
+
 
 HITS
-1	Larry, Roy, Donkey_Kong
+2	Rohan, T
+1	Roy, Ruben
+
 
 WALKS
-1	Bowser_Jr, Lemmy, Mario
+0	Roy, Rohan, Ruben, T, Tom
 
 STRIKEOUTS
+0	Roy, Rohan, Ruben, T, Tom
 
-
-HIT BY PITCH0	Bowser, Bowser_Jr, Iggy, Larry, Lemmy, Ludwig, Morton, Roy, Wendy, Daisy, Diddy_Kong, Donkey_Kong, Luigi, Mario, Peach, Toad, Toadette, Yoshi
+HIT BY PITCH
+0	Roy, Rohan, Ruben, T, Tom

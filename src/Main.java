@@ -85,7 +85,7 @@ public class Main {
 
         for (String away_name : away_names) {
             //System.out.print(away_hash.get(away_name));
-            writer.write(String.valueOf(away_hash.get(away_name)));
+            writer.write(String.valueOf(away_hash.get(away_name)) + "\n");
         }
 
         //System.out.println();
@@ -96,7 +96,7 @@ public class Main {
 
         for (String home_name : home_names) {
             //System.out.print(home_hash.get(home_name));
-            writer.write(String.valueOf(home_hash.get(home_name)));
+            writer.write(String.valueOf(home_hash.get(home_name)) + "\n");
         }
 
 
@@ -119,7 +119,7 @@ public class Main {
 
                 ArrayList<Double> list = new ArrayList<>();
                 //System.out.print("\nLEAGUE LEADERS\nBATTING AVERAGE");
-                writer.write("LEAGUE LEADERS\nBATTING AVERAGE");
+                writer.write("LEAGUE LEADERS\nBATTING AVERAGE\n");
                 for (int i = 0; i < all_names.size(); i++) {
                     if (home_hash.containsKey(all_names.get(i))) {
                         //System.out.println(all_names.get(i) + "is in home team");
@@ -147,7 +147,7 @@ public class Main {
 
                     counter = getCounter_BA(home_hash, home_names, writer, top3, counter, three_val);
 
-                    if (counter < 2) {
+                    if (counter < 3) {
                         writer.write("\n");
                     }
                     three_val -= (counter - 1);
@@ -158,7 +158,7 @@ public class Main {
             } else if (code == 1) {
                 ArrayList<Double> list = new ArrayList<>();
                 //System.out.print("\n\nON-BASE PERCENTAGE");
-                writer.write("\n\nON-BASE PERCENTAGE");
+                writer.write("\n\nON-BASE PERCENTAGE\n");
 
                 for (int i = 0; i < all_names.size(); i++) {
                     if (home_hash.containsKey(all_names.get(i))) {
@@ -185,7 +185,7 @@ public class Main {
                     counter = getCounter_OB(away_hash, away_names, writer, top3, counter, three_val);
 
                     counter = getCounter_OB(home_hash, home_names, writer, top3, counter, three_val);
-                    if (counter < 2) {
+                    if (counter < 3) {
                         writer.write("\n");
                     }
                     three_val -= (counter - 1);
@@ -222,7 +222,7 @@ public class Main {
                     counter = getCounter_hits(away_hash, away_names, writer, top3, counter, three_val);
 
                     counter = getCounter_hits(home_hash, home_names, writer, top3, counter, three_val);
-                    if (counter < 2) {
+                    if (counter < 3) {
                         writer.write("\n");
                     }
                     three_val -= (counter - 1);
@@ -260,7 +260,7 @@ public class Main {
                     counter = getCounter_walks(away_hash, away_names, writer, top3, counter, three_val);
 
                     counter = getCounter_walks(home_hash, home_names, writer, top3, counter, three_val);
-                    if (counter < 2) {
+                    if (counter < 3) {
                         writer.write("\n");
                     }
                     three_val -= (counter - 1);

@@ -188,7 +188,7 @@ public class Player implements Comparable<Player> {
     @Override
     public String toString() {
         //return ("NA \t Ab \t H \t W \t K \t HP \t S \t BA \t OB \n" + name + "\t" + calculate_atBat() + "\t" + gethits() + "\t" + getwalks() + "\t" + getstrikeouts() + "\t" + getHBP() + "\t" + getsacrifice() + "\t" + calculate_BA() + "\t" + calculate_OB() + "\n");
-        return (name + "\t" + calculate_atBat() + "\t" + gethits() + "\t" + getwalks() + "\t" + getstrikeouts() + "\t" + getHBP() + "\t" + getsacrifice() + "\t" + formatter.format(calculate_BA()) + "\t" + formatter.format(calculate_OB()) + "\n");
+        return (name + "\t" + calculate_atBat() + "\t" + gethits() + "\t" + getwalks() + "\t" + getstrikeouts() + "\t" + getHBP() + "\t" + getsacrifice() + "\t" + formatter.format(calculate_BA()) + "\t" + formatter.format(calculate_OB()));
         //return null;
     }
     // function to round  all decimal values given to it to the given number of places
