@@ -164,14 +164,66 @@ public class Main {
                         }
                     }
                     if (counter >= 2) {
-                        three_val--;
+                        three_val -= counter;
                     }
 
                 }
 
 
             } else if (code == 1) {
-                writer.write("\n\nON-BASE PERCENTAGE\n");
+                System.out.print("\n\nON-BASE PERCENTAGE");
+                writer.write("\n\nON-BASE PERCENTAGE");
+
+                for (int i = 0; i < all_names.size(); i++) {
+                    if (home_hash.containsKey(all_names.get(i))) {
+                        //System.out.println(all_names.get(i) + "is in home team");
+                        list.add(home_hash.get(all_names.get(i)).calculate_OB());
+                    } else {
+                        //System.out.println(all_names.get(i) + "is in away team");
+                        list.add(away_hash.get(all_names.get(i)).calculate_OB());
+                    }
+                }
+
+
+                Collections.sort(list);
+                ArrayList<Double> top3 = new ArrayList<Double>(list.subList(list.size() - 3, list.size()));
+
+                int counter = 0;
+                for (int three_val = 2; three_val >= 0; three_val--) {
+                    counter = 0;
+                    System.out.println(String.format("\n%.3f", top3.get(three_val)) + "\t");
+                    writer.write(String.format("\n%.3f", top3.get(three_val)) + "\t");
+
+                    for (int name_index = 0; name_index < all_names.size(); name_index++) {
+
+                        if (home_hash.containsKey(all_names.get(name_index))) {
+                            if (top3.get(three_val) == home_hash.get(all_names.get(name_index)).calculate_OB()) {
+                                if (counter > 0) {
+                                    System.out.print(", ");
+                                    writer.write(", ");
+                                }
+                                System.out.print(all_names.get(name_index));
+                                writer.write(all_names.get(name_index));
+                                counter++;
+                            }
+                        } else {
+                            if (top3.get(three_val) == away_hash.get(all_names.get(name_index)).calculate_OB()) {
+                                if (counter > 0) {
+                                    System.out.print(", ");
+                                    writer.write(", ");
+                                }
+                                System.out.print(all_names.get(name_index));
+                                writer.write(all_names.get(name_index));
+                                counter++;
+                            }
+                        }
+                    }
+                    if (counter >= 2) {
+                        three_val -= counter;
+                    }
+
+                }
+
 
             } else if (code == 2) {
                 writer.write("\n\nHITS\n");
@@ -180,10 +232,10 @@ public class Main {
                 writer.write("\n\nWALKS\n");
 
             } else if (code == 4) {
-                writer.write("\n\nLEAGUE LEADERS\nBATTING AVERAGE\n");
+                writer.write("\n\nSTRIKEOUTS\n");
 
             } else if (code == 5) {
-                writer.write("\n\nLEAGUE LEADERS\nBATTING AVERAGE\n");
+                writer.write("\n\nHIT BY PITCH\n");
 
             }
         }
