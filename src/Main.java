@@ -1,8 +1,7 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -13,6 +12,7 @@ public class Main {
         HashMap<String, Player> away_hash = new HashMap<>();
         ArrayList<String> home_names = new ArrayList<>();
         ArrayList<String> away_names = new ArrayList<>();
+        ArrayList<String> all_names = new ArrayList<>();
 
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("leaders.txt"));
@@ -63,11 +63,11 @@ public class Main {
             // check to see if the player is home or away
             // if home player, update home hashMap
             if (h_a == 'H') {
-                populate_hash(key_hash, home_hash, home_names, h_a, name, key_code);
+                populate_hash(key_hash, home_hash, home_names, h_a, name, key_code, all_names);
             }
             // else if away player, update away hashMap
             else if (h_a == 'A') {
-                populate_hash(key_hash, away_hash, away_names, h_a, name, key_code);
+                populate_hash(key_hash, away_hash, away_names, h_a, name, key_code, all_names);
             } else {
                 // should newer happen for our project
                 System.out.println("Wrong Home/Away code");
@@ -78,6 +78,7 @@ public class Main {
 
         home_names.sort(Comparator.comparing(String::toString));
         away_names.sort(Comparator.comparing(String::toString));
+        all_names.sort(Comparator.comparing(String::toString));
 
         //System.out.println("AWAY");
         writer.write("AWAY\n");
@@ -98,13 +99,61 @@ public class Main {
             writer.write(String.valueOf(home_hash.get(home_name)));
         }
 
-        //System.out.println("LEAGUE LEADERS\nBATTING AVERAGE");
-        writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE");
+
+            ArrayList<Integer> list = new ArrayList<>();
+            Collections.sort(list);
+            List<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() -3, list.size()));
+
+
+            /*
+            Using code to determine which leaders to printout
+            0 -> BATTING AVERAGE
+            1 -> ON-BASE PERCENTAGE
+            2 -> HITS
+            3 -> WALKS
+            4 -> STRIKEOUTS
+            5 -> HIT BY PITCH
+            */
+
+            //Print league leaders
+            if (code == 0) {
+                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
+                for (String all_name : all_names) {
+                    if (home_hash.containsKey(all_name)) {
+                        System.out.println(all_name + "is in home team");
+
+                    } else {
+                        System.out.println(all_name + "is in away team");
+
+                    }
+                }
+
+
+
+            } else if (code == 1) {
+                writer.write("\nON-BASE PERCENTAGE\n");
+
+            } else if (code == 2) {
+                writer.write("\nHITS\n");
+
+            } else if (code == 3) {
+                writer.write("\nWALKS\n");
+
+            } else if (code == 4) {
+                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
+
+            } else if (code == 5) {
+                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
+
+            }
+        }
+
         writer.close();
     }
 
+
     // function which takes any Player and checks if the player is in the home/away hashMap, if not present adds a new player
-    private static void populate_hash(HashMap<String, String> key_hash, HashMap<String, Player> hash, ArrayList<String> names, Character h_a, String name, String key_code) {
+    private static void populate_hash(HashMap<String, String> key_hash, HashMap<String, Player> hash, ArrayList<String> names, Character h_a, String name, String key_code, ArrayList<String> all) {
         // check if player is already in the hashMap
         // if yes, update his stats
         if (hash.containsKey(name)) {
@@ -126,6 +175,7 @@ public class Main {
             // add player to the hashMap
             hash.put(name, player);
             names.add(name);
+            all.add(name);
         }
     }
 
