@@ -119,7 +119,7 @@ public class Main {
 
                 ArrayList<Double> list = new ArrayList<>();
                 //System.out.print("\nLEAGUE LEADERS\nBATTING AVERAGE");
-                writer.write("LEAGUE LEADERS\nBATTING AVERAGE\n");
+                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
                 for (int i = 0; i < all_names.size(); i++) {
                     if (home_hash.containsKey(all_names.get(i))) {
                         //System.out.println(all_names.get(i) + "is in home team");
@@ -139,6 +139,9 @@ public class Main {
                     /*if (three_val<2){
                         writer.write("\n");
                     }*/
+                    if (counter < 3 && counter > 0) {
+                        writer.write("\n");
+                    }
                     counter = 0;
                     //System.out.println(String.format("\n%.3f", top3.get(three_val)) + "\t");
                     writer.write(String.format("%.3f", top3.get(three_val)) + "\t");
@@ -147,9 +150,9 @@ public class Main {
 
                     counter = getCounter_BA(home_hash, home_names, writer, top3, counter, three_val);
 
-                    if (counter < 3) {
+                    /*if (counter < 3) {
                         writer.write("\n");
-                    }
+                    }*/
                     three_val -= (counter - 1);
 
                 }
@@ -215,6 +218,9 @@ public class Main {
                     /*if (three_val<2){
                         writer.write("\n");
                     }*/
+                    if (counter < 3 && counter > 0) {
+                        writer.write("\n");
+                    }
                     counter = 0;
                     //System.out.println(top3.get(three_val) + "\t");
                     writer.write(top3.get(three_val) + "\t");
@@ -222,9 +228,9 @@ public class Main {
                     counter = getCounter_hits(away_hash, away_names, writer, top3, counter, three_val);
 
                     counter = getCounter_hits(home_hash, home_names, writer, top3, counter, three_val);
-                    if (counter < 3) {
+                    /*if (counter < 3) {
                         writer.write("\n");
-                    }
+                    }*/
                     three_val -= (counter - 1);
 
 
@@ -339,11 +345,9 @@ public class Main {
                     counter = getCounter(away_hash, away_names, writer, top3, counter, three_val);
 
                     counter = getCounter(home_hash, home_names, writer, top3, counter, three_val);
-                    if (counter < 2) {
-                        writer.write("\n");
-                    }
-                    three_val -= (counter - 1);
 
+                    writer.write("\n");
+                    three_val -= (counter - 1);
 
                 }
                 writer.write("\n");
