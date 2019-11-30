@@ -100,11 +100,11 @@ public class Main {
         }
 
 
+        // print league leaders
+        for (int code = 0; code < 6; code++) {
+
+
             ArrayList<Integer> list = new ArrayList<>();
-            Collections.sort(list);
-            List<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() -3, list.size()));
-
-
             /*
             Using code to determine which leaders to printout
             0 -> BATTING AVERAGE
@@ -118,18 +118,20 @@ public class Main {
             //Print league leaders
             if (code == 0) {
                 writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE\n");
-                for (String all_name : all_names) {
-                    if (home_hash.containsKey(all_name)) {
-                        System.out.println(all_name + "is in home team");
+                for (int i = 0; i < all_names.size(); i++){
+                    if (home_hash.containsKey(all_names.get(i))){
+                        System.out.println(all_names.get(i) + "is in home team");
 
-                    } else {
-                        System.out.println(all_name + "is in away team");
+                    }else{
+                        System.out.println(all_names.get(i) + "is in away team");
 
                     }
                 }
 
 
 
+                Collections.sort(list);
+                ArrayList<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() -3, list.size()));
             } else if (code == 1) {
                 writer.write("\nON-BASE PERCENTAGE\n");
 
