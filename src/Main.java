@@ -70,8 +70,8 @@ public class Main {
                 populate_hash(key_hash, away_hash, away_names, h_a, name, key_code, all_names);
             } else {
                 // should newer happen for our project
-                System.out.println("Wrong Home/Away code");
-                System.out.println("check code");
+                //System.out.println("Wrong Home/Away code");
+                //System.out.println("check code");
             }
 
         }
@@ -118,8 +118,8 @@ public class Main {
             if (code == 0) {
 
                 ArrayList<Double> list = new ArrayList<>();
-                System.out.print("\nLEAGUE LEADERS\nBATTING AVERAGE");
-                writer.write("\nLEAGUE LEADERS\nBATTING AVERAGE");
+                //System.out.print("\nLEAGUE LEADERS\nBATTING AVERAGE");
+                writer.write("LEAGUE LEADERS\nBATTING AVERAGE");
                 for (int i = 0; i < all_names.size(); i++) {
                     if (home_hash.containsKey(all_names.get(i))) {
                         //System.out.println(all_names.get(i) + "is in home team");
@@ -136,44 +136,28 @@ public class Main {
 
                 int counter = 0;
                 for (int three_val = 2; three_val >= 0; three_val--) {
+                    /*if (three_val<2){
+                        writer.write("\n");
+                    }*/
                     counter = 0;
-                    System.out.println(String.format("\n%.3f", top3.get(three_val)) + "\t");
-                    writer.write(String.format("\n%.3f", top3.get(three_val)) + "\t");
+                    //System.out.println(String.format("\n%.3f", top3.get(three_val)) + "\t");
+                    writer.write(String.format("%.3f", top3.get(three_val)) + "\t");
 
-                    for (int name_index = 0; name_index < all_names.size(); name_index++) {
+                    counter = getCounter_BA(away_hash, away_names, writer, top3, counter, three_val);
 
-                        if (home_hash.containsKey(all_names.get(name_index))) {
-                            if (top3.get(three_val) == home_hash.get(all_names.get(name_index)).calculate_BA()) {
-                                if (counter > 0) {
-                                    System.out.print(", ");
-                                    writer.write(", ");
-                                }
-                                System.out.print(all_names.get(name_index));
-                                writer.write(all_names.get(name_index));
-                                counter++;
-                            }
-                        } else {
-                            if (top3.get(three_val) == away_hash.get(all_names.get(name_index)).calculate_BA()) {
-                                if (counter > 0) {
-                                    System.out.print(", ");
-                                    writer.write(", ");
-                                }
-                                System.out.print(all_names.get(name_index));
-                                writer.write(all_names.get(name_index));
-                                counter++;
-                            }
-                        }
+                    counter = getCounter_BA(home_hash, home_names, writer, top3, counter, three_val);
+
+                    if (counter < 2) {
+                        writer.write("\n");
                     }
-                    if (counter >= 2) {
-                        three_val -= counter;
-                    }
+                    three_val -= (counter - 1);
 
                 }
 
 
             } else if (code == 1) {
                 ArrayList<Double> list = new ArrayList<>();
-                System.out.print("\n\nON-BASE PERCENTAGE");
+                //System.out.print("\n\nON-BASE PERCENTAGE");
                 writer.write("\n\nON-BASE PERCENTAGE");
 
                 for (int i = 0; i < all_names.size(); i++) {
@@ -191,44 +175,27 @@ public class Main {
 
                 int counter = 0;
                 for (int three_val = 2; three_val >= 0; three_val--) {
+                    /*if (three_val<2){
+                        writer.write("\n");
+                    }*/
                     counter = 0;
-                    System.out.println(String.format("\n%.3f", top3.get(three_val)) + "\t");
-                    writer.write(String.format("\n%.3f", top3.get(three_val)) + "\t");
+                    //System.out.println(String.format("\n%.3f", top3.get(three_val)) + "\t");
+                    writer.write(String.format("%.3f", top3.get(three_val)) + "\t");
 
-                    for (int name_index = 0; name_index < all_names.size(); name_index++) {
+                    counter = getCounter_OB(away_hash, away_names, writer, top3, counter, three_val);
 
-                        if (home_hash.containsKey(all_names.get(name_index))) {
-                            if (top3.get(three_val) == home_hash.get(all_names.get(name_index)).calculate_OB()) {
-                                if (counter > 0) {
-                                    System.out.print(", ");
-                                    writer.write(", ");
-                                }
-                                System.out.print(all_names.get(name_index));
-                                writer.write(all_names.get(name_index));
-                                counter++;
-                            }
-                        } else {
-                            if (top3.get(three_val) == away_hash.get(all_names.get(name_index)).calculate_OB()) {
-                                if (counter > 0) {
-                                    System.out.print(", ");
-                                    writer.write(", ");
-                                }
-                                System.out.print(all_names.get(name_index));
-                                writer.write(all_names.get(name_index));
-                                counter++;
-                            }
-                        }
+                    counter = getCounter_OB(home_hash, home_names, writer, top3, counter, three_val);
+                    if (counter < 2) {
+                        writer.write("\n");
                     }
-                    if (counter >= 2) {
-                        three_val -= counter;
-                    }
+                    three_val -= (counter - 1);
 
                 }
 
 
             } else if (code == 2) {
                 ArrayList<Integer> list = new ArrayList<>();
-                System.out.print("\n\nHITS\n");
+                //System.out.print("\n\nHITS\n");
                 writer.write("\n\nHITS\n");
                 for (int i = 0; i < all_names.size(); i++) {
                     if (home_hash.containsKey(all_names.get(i))) {
@@ -240,72 +207,240 @@ public class Main {
                     }
                 }
 
+                Collections.sort(list);
+                ArrayList<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() - 3, list.size()));
+
+                int counter = 0;
+                for (int three_val = 2; three_val >= 0; three_val--) {
+                    /*if (three_val<2){
+                        writer.write("\n");
+                    }*/
+                    counter = 0;
+                    //System.out.println(top3.get(three_val) + "\t");
+                    writer.write(top3.get(three_val) + "\t");
+
+                    counter = getCounter_hits(away_hash, away_names, writer, top3, counter, three_val);
+
+                    counter = getCounter_hits(home_hash, home_names, writer, top3, counter, three_val);
+                    if (counter < 2) {
+                        writer.write("\n");
+                    }
+                    three_val -= (counter - 1);
+
+
+                }
+
+
+            } else if (code == 3) {
+                ArrayList<Integer> list = new ArrayList<>();
+                //System.out.print("\n\nWALKS\n");
+                writer.write("\n\nWALKS\n");
+                for (int i = 0; i < all_names.size(); i++) {
+                    if (home_hash.containsKey(all_names.get(i))) {
+                        //System.out.println(all_names.get(i) + "is in home team");
+                        list.add(home_hash.get(all_names.get(i)).getwalks());
+                    } else {
+                        //System.out.println(all_names.get(i) + "is in away team");
+                        list.add(away_hash.get(all_names.get(i)).getwalks());
+                    }
+                }
 
                 Collections.sort(list);
                 ArrayList<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() - 3, list.size()));
 
                 int counter = 0;
                 for (int three_val = 2; three_val >= 0; three_val--) {
+                    /*if (three_val<2){
+                        writer.write("\n");
+                    }*/
                     counter = 0;
-                    System.out.println(top3.get(three_val) + "\t");
+                    //System.out.println(top3.get(three_val) + "\t");
                     writer.write(top3.get(three_val) + "\t");
 
-                    for (int away_name_index = 0; away_name_index < away_names.size(); away_name_index++){
-                        if (top3.get(three_val) == away_hash.get(away_names.get(away_name_index)).gethits()) {
-                            if (counter > 0) {
-                                System.out.print(", ");
-                                writer.write(", ");
-                            }
-                            System.out.print(away_names.get(away_name_index));
-                            writer.write(away_names.get(away_name_index));
-                            counter++;
-                        }
+                    counter = getCounter_walks(away_hash, away_names, writer, top3, counter, three_val);
+
+                    counter = getCounter_walks(home_hash, home_names, writer, top3, counter, three_val);
+                    if (counter < 2) {
+                        writer.write("\n");
                     }
+                    three_val -= (counter - 1);
 
-
-
-                    for (int home_name_index = 0; home_name_index < home_names.size(); home_name_index++){
-                        if (top3.get(three_val) == home_hash.get(home_names.get(home_name_index)).gethits()) {
-                            if (counter > 0) {
-                                System.out.print(", ");
-                                writer.write(", ");
-                            }
-                            System.out.print(home_names.get(home_name_index));
-                            writer.write(home_names.get(home_name_index));
-                            counter++;
-                        }
-                    }
-
-
-
-
-
-
-
-
-
-
-
-                    if (counter >= 2) {
-                        three_val -= counter;
-                    }
 
                 }
 
 
-            } else if (code == 3) {
-                writer.write("\n\nWALKS\n");
-
             } else if (code == 4) {
+                ArrayList<Integer> list = new ArrayList<>();
+                //System.out.print("\n\nSTRIKEOUTS\n");
                 writer.write("\n\nSTRIKEOUTS\n");
+                for (int i = 0; i < all_names.size(); i++) {
+                    if (home_hash.containsKey(all_names.get(i))) {
+                        //System.out.println(all_names.get(i) + "is in home team");
+                        list.add(home_hash.get(all_names.get(i)).getstrikeouts());
+                    } else {
+                        //System.out.println(all_names.get(i) + "is in away team");
+                        list.add(away_hash.get(all_names.get(i)).getstrikeouts());
+                    }
+                }
 
-            } else if (code == 5) {
+                Collections.sort(list);
+                ArrayList<Integer> top3 = new ArrayList<Integer>();
+                for (int i = 0; i < 3; i++) {
+                    top3.add(list.get(3 - i));
+                }
+
+                int counter = 0;
+                for (int three_val = 2; three_val >= 0; three_val--) {
+                    /*if (three_val<2){
+                        writer.write("\n");
+                    }*/
+                    counter = 0;
+                    //System.out.println(top3.get(three_val) + "\t");
+                    writer.write(top3.get(three_val) + "\t");
+
+                    counter = getCounter_strikeouts(away_hash, away_names, writer, top3, counter, three_val);
+
+                    counter = getCounter_strikeouts(home_hash, home_names, writer, top3, counter, three_val);
+                    if (counter < 2) {
+                        writer.write("\n");
+                    }
+                    three_val -= (counter - 1);
+
+
+                }
+
+
+            } else {
+                ArrayList<Integer> list = new ArrayList<>();
+                //System.out.print("\n\nHIT BY PITCH\n");
                 writer.write("\n\nHIT BY PITCH\n");
+                for (int i = 0; i < all_names.size(); i++) {
+                    if (home_hash.containsKey(all_names.get(i))) {
+                        //System.out.println(all_names.get(i) + "is in home team");
+                        list.add(home_hash.get(all_names.get(i)).getHBP());
+                    } else {
+                        //System.out.println(all_names.get(i) + "is in away team");
+                        list.add(away_hash.get(all_names.get(i)).getHBP());
+                    }
+                }
 
+                Collections.sort(list);
+                ArrayList<Integer> top3 = new ArrayList<Integer>(list.subList(list.size() - 3, list.size()));
+
+                int counter = 0;
+                for (int three_val = 2; three_val >= 0; three_val--) {
+                    /*if (three_val<2){
+                        writer.write("\n");
+                    }*/
+                    counter = 0;
+                    //System.out.println(top3.get(three_val) + "\t");
+                    writer.write(top3.get(three_val) + "\t");
+
+                    counter = getCounter(away_hash, away_names, writer, top3, counter, three_val);
+
+                    counter = getCounter(home_hash, home_names, writer, top3, counter, three_val);
+                    if (counter < 2) {
+                        writer.write("\n");
+                    }
+                    three_val -= (counter - 1);
+
+
+                }
+                writer.write("\n");
             }
         }
 
         writer.close();
+    }
+
+    private static int getCounter_BA(HashMap<String, Player> home_hash, ArrayList<String> home_names, BufferedWriter writer, ArrayList<Double> top3, int counter, int three_val) throws IOException {
+        for (int home_name_index = 0; home_name_index < home_names.size(); home_name_index++) {
+            if (top3.get(three_val) == home_hash.get(home_names.get(home_name_index)).calculate_BA()) {
+                if (counter > 0) {
+                    //System.out.print(", ");
+                    writer.write(", ");
+                }
+                //System.out.print(home_names.get(home_name_index));
+                writer.write(home_names.get(home_name_index));
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    private static int getCounter_OB(HashMap<String, Player> home_hash, ArrayList<String> home_names, BufferedWriter writer, ArrayList<Double> top3, int counter, int three_val) throws IOException {
+        for (int home_name_index = 0; home_name_index < home_names.size(); home_name_index++) {
+            if (top3.get(three_val) == home_hash.get(home_names.get(home_name_index)).calculate_OB()) {
+                if (counter > 0) {
+                    //System.out.print(", ");
+                    writer.write(", ");
+                }
+                //System.out.print(home_names.get(home_name_index));
+                writer.write(home_names.get(home_name_index));
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    private static int getCounter_hits(HashMap<String, Player> home_hash, ArrayList<String> home_names, BufferedWriter writer, ArrayList<Integer> top3, int counter, int three_val) throws IOException {
+        for (int home_name_index = 0; home_name_index < home_names.size(); home_name_index++) {
+            if (top3.get(three_val) == home_hash.get(home_names.get(home_name_index)).gethits()) {
+                if (counter > 0) {
+                    //System.out.print(", ");
+                    writer.write(", ");
+                }
+                //System.out.print(home_names.get(home_name_index));
+                writer.write(home_names.get(home_name_index));
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    private static int getCounter_walks(HashMap<String, Player> home_hash, ArrayList<String> home_names, BufferedWriter writer, ArrayList<Integer> top3, int counter, int three_val) throws IOException {
+        for (int home_name_index = 0; home_name_index < home_names.size(); home_name_index++) {
+            if (top3.get(three_val) == home_hash.get(home_names.get(home_name_index)).getwalks()) {
+                if (counter > 0) {
+                    //System.out.print(", ");
+                    writer.write(", ");
+                }
+                //System.out.print(home_names.get(home_name_index));
+                writer.write(home_names.get(home_name_index));
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    private static int getCounter_strikeouts(HashMap<String, Player> home_hash, ArrayList<String> home_names, BufferedWriter writer, ArrayList<Integer> top3, int counter, int three_val) throws IOException {
+        for (int home_name_index = 0; home_name_index < home_names.size(); home_name_index++) {
+            if (top3.get(three_val) == home_hash.get(home_names.get(home_name_index)).getstrikeouts()) {
+                if (counter > 0) {
+                    //System.out.print(", ");
+                    writer.write(", ");
+                }
+                //System.out.print(home_names.get(home_name_index));
+                writer.write(home_names.get(home_name_index));
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    private static int getCounter(HashMap<String, Player> hash, ArrayList<String> names, BufferedWriter writer, ArrayList<Integer> top3, int counter, int three_val) throws IOException {
+        for (int away_name_index = 0; away_name_index < names.size(); away_name_index++) {
+            if (top3.get(three_val) == hash.get(names.get(away_name_index)).getHBP()) {
+                if (counter > 0) {
+                    //System.out.print(", ");
+                    writer.write(", ");
+                }
+                //System.out.print(away_names.get(away_name_index));
+                writer.write(names.get(away_name_index));
+                counter++;
+            }
+        }
+        return counter;
     }
 
 

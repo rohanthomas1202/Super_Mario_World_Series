@@ -22,21 +22,19 @@ Yoshi	1	0	0	0	0	0	0.000	0.000
 
 LEAGUE LEADERS
 BATTING AVERAGE
-1.000	Donkey_Kong, Larry
+1.000	Larry, Donkey_Kong
+0.500	Roy
 
 ON-BASE PERCENTAGE
-1.000	Bowser_Jr, Donkey_Kong, Larry, Mario
-
-HITS
-
+1.000	Bowser_Jr, Larry, Donkey_Kong, Mario
 
 HITS
 1	Larry, Roy, Donkey_Kong
 
 WALKS
-
+1	Bowser_Jr, Lemmy, Mario
 
 STRIKEOUTS
 
 
-HIT BY PITCH
+HIT BY PITCH0	Bowser, Bowser_Jr, Iggy, Larry, Lemmy, Ludwig, Morton, Roy, Wendy, Daisy, Diddy_Kong, Donkey_Kong, Luigi, Mario, Peach, Toad, Toadette, Yoshi
